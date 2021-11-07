@@ -27,27 +27,25 @@ const particlesCustomization = {
 class App extends Component {
   constructor() {
     super();
-    this.state = { input: "" };
+    this.state = { input: "", imageUrl: "" };
   }
 
   onInputChange = (event) => {
-    console.log(event.target.value);
+    this.setState({ input: event.target.value });
   };
 
   onSubmit = (event) => {
     event.preventDefault();
     console.log("submitted");
-    app.models
-      .predict(
-        Clarifai.FACE_DETECT_MODEL,
-        "https://samples.clarifai.com/face-det.jpg"
-      )
-      .then(
-        function (response) {
-          console.log(response);
-        },
-        function (err) {}
-      );
+    this.setState({ imageUrl: this.state.input });
+    app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input).then(
+      function (response) {
+        console.log(
+          response.outputs[0].data.regions[0].region_info.bounding_box
+        );
+      },
+      function (err) {}
+    );
   };
 
   render() {
@@ -61,10 +59,15 @@ class App extends Component {
           onInputChange={this.onInputChange}
           onSubmit={this.onSubmit}
         />
-        <FaceRecognition />
+        <FaceRecognition imageUrl={this.state.imageUrl} />
       </div>
     );
   }
 }
 
 export default App;
+
+// bottom_row: 0.8364685
+// left_col: 0.343296
+// right_col: 0.76197344
+// top_row: 0.06421221
