@@ -7,6 +7,7 @@ import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import Rank from "./components/Rank/Rank";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import "./App.css";
+import Signin from "./components/Signin/Signin";
 
 const app = new Clarifai.App({
   apiKey: "YOUR_API_KEY",
@@ -69,6 +70,7 @@ class App extends Component {
       <div className="App">
         <Particles className="particles" params={particlesCustomization} />
         <Navigation />
+        <Signin />
         <Logo />
         <Rank />
         <ImageLinkForm
@@ -82,8 +84,3 @@ class App extends Component {
 }
 
 export default App;
-
-// bottom_row: 0.8364685
-// left_col: 0.343296
-// right_col: 0.76197344
-// top_row: 0.06421221
