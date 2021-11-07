@@ -4,9 +4,11 @@
 /node_modules
 /.pnp
 .pnp.js
+/package-lock.json
 
 # testing
 /coverage
+Clarifai_API_Key
 
 # production
 /build
