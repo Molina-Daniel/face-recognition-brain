@@ -7,6 +7,7 @@ import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import Rank from "./components/Rank/Rank";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import Signin from "./components/Signin/Signin";
+import Register from "./components/Register/Register";
 import "./App.css";
 
 const app = new Clarifai.App({
@@ -74,9 +75,13 @@ class App extends Component {
       <div className="App">
         <Particles className="particles" params={particlesCustomization} />
         <Navigation onRouteChange={this.onRouteChange} />
-        {this.state.route === "signin" ? (
+        {this.state.route === "signin" && (
           <Signin onRouteChange={this.onRouteChange} />
-        ) : (
+        )}
+        {this.state.route === "register" && (
+          <Register onRouteChange={this.onRouteChange} />
+        )}
+        {this.state.route === "home" && (
           <div>
             <Logo />
             <Rank />
