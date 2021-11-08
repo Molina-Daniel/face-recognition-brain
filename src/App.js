@@ -29,7 +29,13 @@ const particlesCustomization = {
 class App extends Component {
   constructor() {
     super();
-    this.state = { input: "", imageUrl: "", box: {}, route: "signin" };
+    this.state = {
+      input: "",
+      imageUrl: "",
+      box: {},
+      route: "signin",
+      isSignedIn: false,
+    };
   }
 
   calculateFaceLocation = (data) => {
@@ -48,7 +54,6 @@ class App extends Component {
   };
 
   displayFaceBox = (box) => {
-    console.log(box);
     this.setState({ box: box });
   };
 
@@ -67,21 +72,29 @@ class App extends Component {
   };
 
   onRouteChange = (route) => {
+    if (route === "signin") {
+      this.setState({ isSignedIn: false });
+    } else if (route === "home") {
+      this.setState({ isSignedIn: true });
+    }
     this.setState({ route: route });
   };
 
   render() {
+    const { isSignedIn, imageUrl, route, box } = this.state;
+
     return (
       <div className="App">
         <Particles className="particles" params={particlesCustomization} />
-        <Navigation onRouteChange={this.onRouteChange} />
-        {this.state.route === "signin" && (
-          <Signin onRouteChange={this.onRouteChange} />
-        )}
-        {this.state.route === "register" && (
+        <Navigation
+          isSignedIn={isSignedIn}
+          onRouteChange={this.onRouteChange}
+        />
+        {route === "signin" && <Signin onRouteChange={this.onRouteChange} />}
+        {route === "register" && (
           <Register onRouteChange={this.onRouteChange} />
         )}
-        {this.state.route === "home" && (
+        {route === "home" && (
           <div>
             <Logo />
             <Rank />
@@ -89,10 +102,7 @@ class App extends Component {
               onInputChange={this.onInputChange}
               onSubmit={this.onSubmit}
             />
-            <FaceRecognition
-              imageUrl={this.state.imageUrl}
-              box={this.state.box}
-            />{" "}
+            <FaceRecognition imageUrl={imageUrl} box={box} />{" "}
           </div>
         )}
       </div>
