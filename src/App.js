@@ -12,19 +12,9 @@ import "./App.css";
 
 const particlesCustomization = {
   autoPlay: true,
-  backgroundMask: {
-    composite: "destination-out",
-    cover: {
-      color: {
-        value: "#fff",
-      },
-      opacity: 1,
-    },
-    enable: false,
-  },
   fullScreen: {
     enable: true,
-    zIndex: 1,
+    zIndex: -1,
   },
   detectRetina: true,
   duration: 0,
@@ -259,8 +249,8 @@ const particlesCustomization = {
       consent: false,
       distance: 150,
       enable: true,
-      frequency: 1,
-      opacity: 1,
+      frequency: 0.5,
+      opacity: 0.4,
       shadow: {
         blur: 5,
         color: {
@@ -334,19 +324,19 @@ const particlesCustomization = {
     },
     number: {
       density: {
-        enable: false,
+        enable: true,
         area: 800,
         factor: 1000,
       },
       limit: 0,
-      value: 100,
+      value: 200,
     },
     opacity: {
       random: {
         enable: false,
         minimumValue: 0.1,
       },
-      value: 1,
+      value: 0.5,
       animation: {
         count: 0,
         enable: false,
